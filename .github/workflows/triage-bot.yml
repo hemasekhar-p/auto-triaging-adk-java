@@ -40,7 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ADK_TRIAGE_AGENT_GITHUB_TOKEN }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
 
-          GOOGLE_GENAI_USE_VERTEXAI: 0
+          GOOGLE_GENAI_USE_VERTEXAI: 1
           GOOGLE_CLOUD_LOCATION: us-central1
           GOOGLE_CLOUD_PROJECT: gtech-rmi-dev
 
