@@ -106,8 +106,29 @@ public class Main {
                 .autoCreateSession(true)
                 .build();
 
-        // 4. Execute Async Event Loop (Blocking for CLI execution)
         runner.runAsync(USER_ID, sessionId, userMessage, config)
+                .blockingForEach(event -> {
+                    if (event.content() != null) {
+                        event.content().ifPresent(content -> {
+                            if (content.parts() != null && !content.parts().isEmpty()) {
+                                content.parts().get().get(0).text().ifPresent(text -> {
+                                    if (!text.isBlank()) {
+                                        // Print the exact author name so we know what the framework uses!
+                                        System.out.println("** " + event.author() + " : " + text);
+
+                                        // Append anything that isn't the user prompt
+                                        if (!USER_ID.equals(event.author())) {
+                                            finalResponseText.append(text);
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+
+        // 4. Execute Async Event Loop (Blocking for CLI execution)
+        /*runner.runAsync(USER_ID, sessionId, userMessage, config)
             .blockingForEach(event -> {
                 // Ensure content and parts exist before extracting text
                 if (event.content() != null && event.content().get().parts() != null && !event.content().get().parts().isEmpty()) {
@@ -121,7 +142,7 @@ public class Main {
                         }
                     }
                 }
-            });
+            });*/
         
         System.out.println("\n<<<< Agent Final Output: \n" + finalResponseText.toString() + "\n");
     }
