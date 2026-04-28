@@ -52,4 +52,4 @@ jobs:
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_COUNT_TO_PROCESS: '3' # Process 3 issues at a time on schedule
-        run: mvn compile exec:java@run-triaging-agent -pl :triaging-agent
+        run: mvn compile exec:java@run-triaging-agent
