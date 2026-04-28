@@ -84,10 +84,20 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.6.3</version>
-        <configuration>
-          <mainClass>com.google.adk.samples.triaging.Main</mainClass>
-        </configuration>
+        <executions>
+          <execution>
+            <id>run-triaging-agent</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>com.google.adk.samples.triaging.Main</mainClass>
+            </configuration>
+          </execution>
+        </executions>
+
       </plugin>
+
     </plugins>
   </build>
 
