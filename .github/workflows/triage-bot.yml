@@ -7,6 +7,7 @@ on:
   schedule:
     # This runs at 6:00 AM UTC (10 PM PST)
     - cron: '0 6 * * *'
+  workflow_dispatch:
 
 jobs:
   triage-open-issues:
